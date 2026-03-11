@@ -16,13 +16,8 @@ RUN apt-get update && apt-get install -y \
  && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies
-RUN sudo pip install -r requirements.txt
-
-# Copy project files
 COPY . /app/
-
-# Install project itself
-RUN fastapi run ./main.py
+RUN pip install -r requirements.txt
 
 # Expose FastAPI port
 EXPOSE 8000
