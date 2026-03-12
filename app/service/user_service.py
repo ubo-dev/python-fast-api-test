@@ -19,7 +19,9 @@ class UserService:
         if existing_user:
             raise HTTPException(status_code=400, detail="This email already registered!")
         
-        loop = asyncio.get_event_loop() # bu sekilde blocking olan hash_passwordu 
+        # bu sekilde blocking olan hash_passwordu farklı thread icinde calıstırarak
+        # event loopu blocklamamıs oluyoruz
+        loop = asyncio.get_event_loop()
         hashed_passwd = await loop.run_in_executor(None, hash_password, user_create.password)
         
         user = User(
