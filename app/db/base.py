@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from sqlalchemy import DateTime, Integer, String
+from sqlalchemy import DateTime, Integer
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -20,5 +20,3 @@ class Base(DeclarativeBase):
     )
     
     updated_by: Mapped[int | None] = mapped_column(Integer, nullable=True)
-    
-    pass
