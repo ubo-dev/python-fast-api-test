@@ -5,7 +5,7 @@ from fastapi.responses import StreamingResponse
 import qrcode
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.api.deps import get_db
+from app.api.deps import get_async_db_session
 from app.modules.event.service import EventService
 
 class QRService:

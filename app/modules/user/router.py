@@ -5,7 +5,7 @@ import qrcode
 from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.api.deps import get_db, get_user_service
+from app.api.deps import get_async_db_session, get_user_service
 from app.modules.user.service import UserService
 from app.modules.user.shemas import UserCreate, UserRead
 
