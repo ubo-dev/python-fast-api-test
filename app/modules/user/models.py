@@ -1,7 +1,6 @@
 import uuid
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column
 from app.db.base import Base
-from app.modules.participant.repository import Participant
 
 class User(Base):
     __tablename__ = "users"
@@ -9,5 +8,5 @@ class User(Base):
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     name: Mapped[str] = mapped_column(nullable=False)
     email: Mapped[str] = mapped_column(unique=True, nullable=False)
-    
-    participants: Mapped[list["Participant"]] = relationship(back_populates="user")
+    hashed_password: Mapped[str] = mapped_column()
+    daily_request_count: Mapped[int] = mapped_column(default=0)

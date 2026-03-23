@@ -10,15 +10,15 @@ router = APIRouter()
 AuthServiceDep = Annotated[AuthService, Depends(get_auth_service)]
 
 @router.post("/login")
-def login(
+async def login(
         request: LoginRequest, 
         service: AuthServiceDep
     ) -> AuthResponse:
-    return service.login(request) 
+    return await service.login(request)
 
 @router.post("/register")
-def register(
+async def register(
         request: RegisterRequest,
         service: AuthServiceDep
 ) -> AuthResponse:
-    return service.register(request)
+    return await service.register(request)

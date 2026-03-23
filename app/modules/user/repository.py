@@ -16,13 +16,13 @@ class UserRepository:
         )
         return result.scalar_one_or_none() # return or null gibi yapi
     
-    async def get_by_id(self, id: uuid) -> User | None:
+    async def get_by_id(self, user_id: uuid.UUID) -> User | None:
         result = await self.db.execute(
-            select(User).where(User.id == id)
+            select(User).where(User.id == user_id)
         )
         return result.scalar_one_or_none()
     
-    async def create(self, user: User) -> User:
+    async def create(self, user: User) -> User | None:
         self.db.add(user)
         await self.db.commit()
         await self.db.refresh()
